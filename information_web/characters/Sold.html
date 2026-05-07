@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Character Parallax</title>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 
 <body class="parallax-right">
@@ -12,21 +12,18 @@
   <section id="center">
     <div class="scene">
 
-      <!-- Background image -->
-      <img class="layer bg" src="/images/img_trail_sol.png" alt="Background">
-
-      <!-- Popup texts -->
+      <img class="layer bg" src="../public/images/img_trail_sol.png" alt="Background">
 
       <div id="text-1" class="saucer-popup">
-       Explore the street and see how authorities try their best to control the insane crowd 
+        Explore the street and see how authorities try their best to control the insane crowd
       </div>
 
       <div id="text-2" class="saucer-popup">
-        Durign this period strict set of rules were set to contorl the crowd 
+        During this period, a strict set of rules was created to control the crowd
       </div>
 
       <div id="text-3" class="saucer-popup">
-        This exibits of lack of control led to serious consecuences
+        These displays of lack of control led to serious consequences
       </div>
 
       <div id="text-4" class="saucer-popup">
@@ -36,37 +33,25 @@
     </div>
   </section>
 
-  <!-- Back button -->
-  <a href="/" style="position: fixed; top: 900px; right: 20px; z-index: 1000;">
-    <img src="/images/back-icon.png" alt="Back" style="width:40px; height:40px;">
+  <a href="../" style="position: fixed; top: 900px; right: 20px; z-index: 1000;">
+    <img src="../public/images/back-icon.png" alt="Back" style="width:40px; height:40px;">
   </a>
 
   <script>
-
     const bg = document.querySelector(".bg");
     const mid = document.querySelector(".mid");
     const fg = document.querySelector(".fg");
 
     const isRight = document.body.classList.contains("parallax-right");
 
-    // Parallax movement
     function updateParallax() {
       const x = window.scrollX;
 
-      if (bg) {
-        bg.style.transform = `translateX(${-x * 0.1}px)`;
-      }
-
-      if (mid) {
-        mid.style.transform = `translateX(${-x * 0.3}px)`;
-      }
-
-      if (fg) {
-        fg.style.transform = `translateX(${-x * 0.4}px)`;
-      }
+      if (bg) bg.style.transform = `translateX(${-x * 0.1}px)`;
+      if (mid) mid.style.transform = `translateX(${-x * 0.3}px)`;
+      if (fg) fg.style.transform = `translateX(${-x * 0.4}px)`;
     }
 
-    // Fade screen to black
     function fadeToBlackAndStay(delay = 10000) {
       const overlay = document.getElementById("black-overlay");
 
@@ -78,32 +63,20 @@
       }, delay);
     }
 
-    // Show + hide popup text
     function showText(id, showTime, hideTime) {
-
       const text = document.getElementById(id);
 
-      // Show
       setTimeout(() => {
-        if (text) {
-          text.classList.add("active");
-        }
+        if (text) text.classList.add("active");
       }, showTime);
 
-      // Hide
       setTimeout(() => {
-        if (text) {
-          text.classList.remove("active");
-        }
+        if (text) text.classList.remove("active");
       }, hideTime);
     }
 
-    // When page loads
     window.addEventListener("DOMContentLoaded", () => {
-
-      // Start on right side
       if (isRight) {
-
         const maxScroll =
           document.documentElement.scrollWidth - window.innerWidth;
 
@@ -115,7 +88,6 @@
 
       updateParallax();
 
-      // Remove black overlay at start
       const overlay = document.getElementById("black-overlay");
 
       if (overlay) {
@@ -128,13 +100,11 @@
       showText("text-2", 30000, 42000);
       showText("text-3", 60000, 72000);
       showText("text-4", 80000, 89000);
-  
-      fadeToBlackAndStay(90000);
 
+      fadeToBlackAndStay(90000);
     });
 
     window.addEventListener("scroll", updateParallax);
-
   </script>
 
 </body>

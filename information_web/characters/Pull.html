@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Image with Text</title>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 
 <body class="parallax-left">
@@ -10,48 +10,48 @@
 
   <section id="center">
     <div class="scene">
-      <img class="layer bg" src="/public/images/imd_trail-pul.png" alt="Background">
-     
+      <img class="layer bg" src="../public/images/imd_trail-pul.png" alt="Background">
     </div>
   </section>
+
   <div id="text-1" class="saucer-popup">
-  Explore the differnet costumes and see how they challenge the social order 
+    Explore the different costumes and see how they challenge the social order
   </div>
-  
+
   <div id="text-2" class="saucer-popup">
-    Characters like Pulcinella embodies a spirit of freedom and liberty 
+    Characters like Pulcinella embody a spirit of freedom and liberty
   </div>
-  
+
   <div id="text-3" class="saucer-popup">
-   This kind of chracters were known to mock the rich and powerful
+    This kind of character was known to mock the rich and powerful
   </div>
 
   <div id="text-4" class="saucer-popup">
     The carnival is coming to an end ...
   </div>
 
-  <a href="/" style="position: fixed; top: 900px; right: 20px; z-index: 1000;">
-    <img src="/public/images/back-icon.png" alt="Back to main" style="width:40px; height:40px;">
+  <a href="../" style="position: fixed; top: 900px; right: 20px; z-index: 1000;">
+    <img src="../public/images/back-icon.png" alt="Back to main" style="width:40px; height:40px;">
   </a>
 
   <script>
     const bg = document.querySelector(".bg");
     const mid = document.querySelector(".mid");
     const fg = document.querySelector(".fg");
-  
+
     const isRight = document.body.classList.contains("parallax-right");
-  
+
     function updateParallax() {
       const x = window.scrollX;
-  
+
       if (bg) bg.style.transform = `translateX(${-x * 0.1}px)`;
       if (mid) mid.style.transform = `translateX(${-x * 0.3}px)`;
       if (fg) fg.style.transform = `translateX(${-x * 0.4}px)`;
     }
-  
+
     function fadeToBlackAndStay(delay = 10000) {
       const overlay = document.getElementById("black-overlay");
-  
+
       setTimeout(() => {
         if (overlay) {
           overlay.classList.add("active");
@@ -59,48 +59,48 @@
         }
       }, delay);
     }
-  
+
     function showText(id, showTime, hideTime) {
       const text = document.getElementById(id);
-  
+
       setTimeout(() => {
         if (text) text.classList.add("active");
       }, showTime);
-  
+
       setTimeout(() => {
         if (text) text.classList.remove("active");
       }, hideTime);
     }
-  
+
     window.addEventListener("DOMContentLoaded", () => {
       if (isRight) {
         const maxScroll =
           document.documentElement.scrollWidth - window.innerWidth;
-  
+
         window.scrollTo({
           left: maxScroll,
           top: 0
         });
       }
-  
+
       updateParallax();
-  
+
       const overlay = document.getElementById("black-overlay");
-  
+
       if (overlay) {
         requestAnimationFrame(() => {
           overlay.classList.remove("active");
         });
       }
-  
+
       showText("text-1", 8000, 20000);
       showText("text-2", 30000, 42000);
       showText("text-3", 60000, 72000);
       showText("text-4", 80000, 89000);
-  
+
       fadeToBlackAndStay(90000);
     });
-  
+
     window.addEventListener("scroll", updateParallax);
   </script>
 </body>
