@@ -1,0 +1,227 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin: 0;
+  overflow-x: scroll;
+  overflow-y: auto;
+}
+
+#app {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0;
+  border-inline: none;
+  overflow-x: visible;
+}
+
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  place-content: center;
+  place-items: center;
+  flex-grow: 1;
+}
+
+.scene {
+  position: relative;
+  width: 680vw;
+  height: 100vh;
+  overflow: visible;
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  will-change: transform;
+  pointer-events: none;
+}
+
+body.parallax-right .layer {
+  left: 40%;
+  transform: translateX(-40%);
+}
+
+body.parallax-left .layer {
+  right: 0;
+  transform: translateX(0);
+}
+
+.bg { z-index: 1; }
+.mid { z-index: 2; }
+.fg { z-index: 3; }
+
+/* Main page buttons */
+.fab-container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-51%, -35%);
+  display: flex;
+  gap: 290px;
+  z-index: 1000;
+}
+
+.fab-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.fab-btn img {
+  width: 148px;
+  height: 288px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* Black screen transition */
+#black-overlay {
+  position: fixed;
+  inset: 0;
+  background: black;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 1s ease;
+}
+
+#black-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Popup text */
+.saucer-popup,
+#Gb-text {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: 9998;
+
+  width: 430px;
+  min-height: 95px;
+  padding: 22px 32px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  font-size: 18px;
+  line-height: 1.45;
+  color: black;
+
+  background: rgba(255, 255, 255, 0.72);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, 0.8),
+    0 12px 28px rgba(0, 0, 0, 0.35);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+.saucer-popup.active,
+#Gb-text.active {
+  opacity: 1;
+}
+
+.saucer-popup::before,
+#Gb-text::before {
+  content: "";
+  position: absolute;
+  width: 85%;
+  height: 45%;
+  top: 18%;
+  left: 7.5%;
+
+  border-radius: 50%;
+  border-top: 3px solid rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.18);
+
+  z-index: -1;
+}
+
+.saucer-popup::after,
+#Gb-text::after {
+  content: "";
+  position: absolute;
+  width: 65%;
+  height: 25%;
+  bottom: -10px;
+  left: 17.5%;
+
+  border-radius: 50%;
+  background: rgba(120, 120, 120, 0.35);
+  filter: blur(8px);
+
+  z-index: -2;
+}
+
+/* Back button / small round buttons option */
+.back-btn img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
+      rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+}
