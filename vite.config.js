@@ -10,8 +10,10 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         informational: resolve(__dirname, 'information_web/index.html'),
         experiential: resolve(__dirname, 'experiential_web/index.html'),
-        pull: resolve(__dirname, 'information_web/characters/Pull.html'),
-        sold: resolve(__dirname, 'information_web/characters/Sold.html'),
+        infoPull: resolve(__dirname, 'information_web/characters/Pull.html'),
+        infoSold: resolve(__dirname, 'information_web/characters/Sold.html'),
+        expPull: resolve(__dirname, 'experiential_web/characters/Pull.html'),
+        expSold: resolve(__dirname, 'experiential_web/characters/Sold.html'),
       }
     }
   }
